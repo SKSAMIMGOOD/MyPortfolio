@@ -1,249 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050816" />
-    <meta name="description" content="SK MD SAMIM is a BCA student and emerging front-end developer creating thoughtful, practical digital experiences." />
-    <meta name="keywords" content="SK MD SAMIM, portfolio, front-end developer, web designer, BCA student, JavaScript" />
-    <meta property="og:title" content="SK MD SAMIM | Front-end Developer" />
-    <meta property="og:description" content="A portfolio of practical web work, learning, and digital ideas." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="ssamim.png" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23050816'/%3E%3Cpath d='M20 17h24L33 32l12 15H20l11-15z' fill='%2300e5ff'/%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="style.css" />
-    <title>SK MD SAMIM | Digital Experiences</title>
-  </head>
-  <body>
-    <div id="loading-screen" class="loading-screen" aria-label="Loading portfolio">
-      <div class="loader-mark" aria-hidden="true"><span></span><span></span><span></span></div>
-      <p>Preparing the experience</p>
-    </div>
 
-    <div class="cursor-glow" aria-hidden="true"></div>
-    <div class="page-noise" aria-hidden="true"></div>
-    <div class="grid-backdrop" aria-hidden="true"></div>
-    <div class="orb orb--cyan" aria-hidden="true"></div>
-    <div class="orb orb--violet" aria-hidden="true"></div>
-    <div class="orb orb--green" aria-hidden="true"></div>
-    <canvas id="particle-canvas" aria-hidden="true"></canvas>
-    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050816" />
+  <meta name="description"
+    content="SK MD SAMIM is a BCA student and emerging front-end developer creating thoughtful, practical digital experiences." />
+  <meta name="keywords" content="SK MD SAMIM, portfolio, front-end developer, web designer, BCA student, JavaScript" />
+  <meta property="og:title" content="SK MD SAMIM | Front-end Developer" />
+  <meta property="og:description" content="A portfolio of practical web work, learning, and digital ideas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="ssamim.png" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23050816'/%3E%3Cpath d='M20 17h24L33 32l12 15H20l11-15z' fill='%2300e5ff'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+  <title>SK MD SAMIM | Digital Experiences</title>
+</head>
 
-    <svg class="icon-sprite" aria-hidden="true" focusable="false">
-      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" /></symbol>
-      <symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M14 5l-4 14" /></symbol>
-      <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z" /></symbol>
-      <symbol id="icon-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5" /></symbol>
-      <symbol id="icon-github" viewBox="0 0 24 24"><path d="M15 22v-3.9c.04-1 .3-1.7.7-2.1 2.3-.25 4.7-1.13 4.7-5.1 0-1.13-.4-2.05-1.05-2.77.1-.26.46-1.32-.1-2.75 0 0-.86-.28-2.82 1.06A9.8 9.8 0 0 0 12 5.84a9.8 9.8 0 0 0-4.43.6C5.61 5.1 4.75 5.38 4.75 5.38c-.56 1.43-.2 2.49-.1 2.75A4.02 4.02 0 0 0 3.6 10.9c0 3.96 2.4 4.85 4.69 5.1.33.34.63.94.69 1.8V22M9 19.5c-3 .93-3.5-1.35-3.5-1.35-.48-1.2-1.16-1.52-1.16-1.52" /></symbol>
-      <symbol id="icon-linkedin" viewBox="0 0 24 24"><path d="M6.5 9.5V18M6.5 6.2v.1M10.5 18v-4.7c0-2.1 1.2-3.8 3.5-3.8 2.1 0 3.5 1.5 3.5 4.1V18M10.5 12.8c0-2 1.3-3.3 3.5-3.3" /></symbol>
-      <symbol id="icon-mail" viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 7l8 6 8-6" /></symbol>
-      <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></symbol>
-      <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></symbol>
-      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></symbol>
-      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></symbol>
-      <symbol id="icon-external" viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></symbol>
-      <symbol id="icon-send" viewBox="0 0 24 24"><path d="m21 3-7.5 18-3.8-7.7L2 9.5 21 3ZM9.7 13.3 14 9" /></symbol>
-    </svg>
+<body>
+  <div id="loading-screen" class="loading-screen" aria-label="Loading portfolio">
+    <div class="loader-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p>Preparing the experience</p>
+  </div>
 
-    <header class="site-header" id="top">
-      <nav class="navbar glass" aria-label="Main navigation">
-        <a class="brand magnetic" href="#home" aria-label="SK MD SAMIM home">
-          <span class="brand-mark"><img src="picofme (4).png" alt="logo"></span>
-          <span class="brand-name">𝕊𝕂 𝕄𝔻 𝕊𝔸𝕄𝕀𝕄<span></span></span>
-        </a>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-menu">
-          <svg><use href="#icon-menu" /></svg>
-        </button>
-        <div id="primary-menu" class="nav-menu">
-          <a class="nav-link active" href="#home">Home</a>
-          <a class="nav-link" href="#about">About</a>
-          <a class="nav-link" href="#skills">Skills</a>
-          <a class="nav-link" href="#projects">Projects</a>
-          <a class="nav-link" href="#services">Services</a>
-          <a class="nav-link" href="#experience">Journey</a>
-          <a class="nav-link" href="#contact">Contact</a>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="grid-backdrop" aria-hidden="true"></div>
+  <div class="orb orb--cyan" aria-hidden="true"></div>
+  <div class="orb orb--violet" aria-hidden="true"></div>
+  <div class="orb orb--green" aria-hidden="true"></div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" />
+    </symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24">
+      <path d="m8 9-3 3 3 3M16 9l3 3-3 3M14 5l-4 14" />
+    </symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24">
+      <path
+        d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z" />
+    </symbol>
+    <symbol id="icon-layers" viewBox="0 0 24 24">
+      <path d="m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5" />
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24">
+      <path
+        d="M15 22v-3.9c.04-1 .3-1.7.7-2.1 2.3-.25 4.7-1.13 4.7-5.1 0-1.13-.4-2.05-1.05-2.77.1-.26.46-1.32-.1-2.75 0 0-.86-.28-2.82 1.06A9.8 9.8 0 0 0 12 5.84a9.8 9.8 0 0 0-4.43.6C5.61 5.1 4.75 5.38 4.75 5.38c-.56 1.43-.2 2.49-.1 2.75A4.02 4.02 0 0 0 3.6 10.9c0 3.96 2.4 4.85 4.69 5.1.33.34.63.94.69 1.8V22M9 19.5c-3 .93-3.5-1.35-3.5-1.35-.48-1.2-1.16-1.52-1.16-1.52" />
+    </symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24">
+      <path
+        d="M6.5 9.5V18M6.5 6.2v.1M10.5 18v-4.7c0-2.1 1.2-3.8 3.5-3.8 2.1 0 3.5 1.5 3.5 4.1V18M10.5 12.8c0-2 1.3-3.3 3.5-3.3" />
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <path d="M4 6h16v12H4zM4 7l8 6 8-6" />
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+    </symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24">
+      <path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+    </symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24">
+      <path d="m21 3-7.5 18-3.8-7.7L2 9.5 21 3ZM9.7 13.3 14 9" />
+    </symbol>
+  </svg>
+
+  <header class="site-header" id="top">
+    <nav class="navbar glass" aria-label="Main navigation">
+      <a class="brand magnetic" href="#home" aria-label="SK MD SAMIM home">
+        <span class="brand-mark"><img src="picofme (4).png" alt="logo"></span>
+        <span class="brand-name">𝕊𝕂 𝕄𝔻 𝕊𝔸𝕄𝕀𝕄<span></span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+        aria-controls="primary-menu">
+        <svg>
+          <use href="#icon-menu" />
+        </svg>
+      </button>
+      <div id="primary-menu" class="nav-menu">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#experience">Journey</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+      <a class="nav-resume btn btn--small magnetic" href="SK_MD_SAMIM_Resume.pdf" download>
+        <img width="25" height="25" src="icons8-download.gif" alt="download" />
+        <span>Download Resume</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero section section--hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span></span> Available for internships &amp; collaborations</p>
+        <h1>Making the web feel<br /><em>more human.</em></h1>
+        <div class="hero-role"><span>I’m a</span><strong id="typed-role" aria-live="polite">Frontend
+            Developer</strong><i></i></div>
+        <p class="hero-description">Hi, I’m <b>SK MD SAMIM</b> — a BCA student shaping thoughtful interfaces, useful
+          digital products, and a future at the intersection of web, AI, and entrepreneurship.</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary magnetic" href="#projects">Explore my work <svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+          <a class="text-link magnetic" href="#contact">Let’s work together <svg>
+              <use href="#icon-arrow" />
+            </svg></a>
         </div>
-        <a class="nav-resume btn btn--small magnetic" href="SK_MD_SAMIM_Resume.pdf" download>
-          <img width="25" height="25" src="icons8-download.gif" alt="download"/>
-          <span>Download Resume</span>
-        </a>
-      </nav>
-    </header>
-
-    <main>
-      <section id="home" class="hero section section--hero">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Available for internships &amp; collaborations</p>
-          <h1>Making the web feel<br /><em>more human.</em></h1>
-          <div class="hero-role"><span>I’m a</span><strong id="typed-role" aria-live="polite">Frontend Developer</strong><i></i></div>
-          <p class="hero-description">Hi, I’m <b>SK MD SAMIM</b> — a BCA student shaping thoughtful interfaces, useful digital products, and a future at the intersection of web, AI, and entrepreneurship.</p>
-          <div class="hero-actions">
-            <a class="btn btn--primary magnetic" href="#projects">Explore my work <svg><use href="#icon-arrow" /></svg></a>
-            <a class="text-link magnetic" href="#contact">Let’s work together <svg><use href="#icon-arrow" /></svg></a>
+        <dl class="hero-metrics" aria-label="Portfolio highlights">
+          <div>
+            <dt data-count="10">0</dt>
+            <dd>Public projects</dd>
           </div>
-          <dl class="hero-metrics" aria-label="Portfolio highlights">
-            <div><dt data-count="10">0</dt><dd>Public projects</dd></div>
-            <div><dt data-count="3">0</dt><dd>Languages spoken</dd></div>
-            <div><dt data-count="2">0</dt><dd>Certificates earned</dd></div>
-          </dl>
-        </div>
-
-        <div class="hero-visual reveal" data-parallax="0.025">
-          <div class="hero-badge badge--idea"><svg><use href="#icon-spark" /></svg><span>Building ideas<br />with intention</span></div>
-          <div class="hero-badge badge--open"><span class="status-dot"></span><span>Open to work</span></div>
-          <div class="portrait-orbit orbit-one"></div>
-          <div class="portrait-orbit orbit-two"></div>
-          <div class="portrait-glow"></div>
-          <div class="portrait-frame">
-            <div class="portrait-shine"></div>
-            <img  src="ssamimm.png" alt="SK MD Samim smiling" fetchpriority="high" style="filter:none; mix-blend-mode:normal;" />
+          <div>
+            <dt data-count="3">0</dt>
+            <dd>Languages spoken</dd>
           </div>
-          <div class="hero-card glass">
-            <span class="hero-card__icon"><svg><use href="#icon-code" /></svg></span>
-            <div><small>Current focus</small><strong>Designing with code</strong></div>
+          <div>
+            <dt data-count="2">0</dt>
+            <dd>Certificates earned</dd>
           </div>
-          <div class="floating-dot dot-one"></div><div class="floating-dot dot-two"></div><div class="floating-dot dot-three"></div>
-        </div>
-        <a class="scroll-cue" href="#about" aria-label="Scroll to About section"><span>Scroll to explore</span><i></i></a>
-      </section>
+        </dl>
+      </div>
 
-      <section id="about" class="section about-section">
-        <div class="section-intro reveal">
-          <p class="eyebrow"><span></span> A little about me</p>
-          <h2>A curious mind<br />with a <em>builder’s heart.</em></h2>
-          <p>My path is rooted in computer applications and powered by the joy of turning ideas into things people can actually use.</p>
+      <div class="hero-visual reveal" data-parallax="0.025">
+        <div class="hero-badge badge--idea"><svg>
+            <use href="#icon-spark" />
+          </svg><span>Building ideas<br />with intention</span></div>
+        <div class="hero-badge badge--open"><span class="status-dot"></span><span>Open to work</span></div>
+        <div class="portrait-orbit orbit-one"></div>
+        <div class="portrait-orbit orbit-two"></div>
+        <div class="portrait-glow"></div>
+        <div class="portrait-frame">
+          <div class="portrait-shine"></div>
+          <img src="ssamimm.png" alt="SK MD Samim smiling" fetchpriority="high"
+            style="filter:none; mix-blend-mode:normal;" />
         </div>
-        <div class="story-grid">
-          <article class="story-card story-card--photo reveal tilt-card">
-            <img src="scatch.png" alt="Illustrated portrait of SK MD Samim" loading="lazy" />
-            <div class="story-card__caption"><span>Based in</span><strong>Bolpur, West Bengal</strong></div>
+        <div class="hero-card glass">
+          <span class="hero-card__icon"><svg>
+              <use href="#icon-code" />
+            </svg></span>
+          <div><small>Current focus</small><strong>Designing with code</strong></div>
+        </div>
+        <div class="floating-dot dot-one"></div>
+        <div class="floating-dot dot-two"></div>
+        <div class="floating-dot dot-three"></div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to About section"><span>Scroll to explore</span><i></i></a>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div class="section-intro reveal">
+        <p class="eyebrow"><span></span> A little about me</p>
+        <h2>A curious mind<br />with a <em>builder’s heart.</em></h2>
+        <p>My path is rooted in computer applications and powered by the joy of turning ideas into things people can
+          actually use.</p>
+      </div>
+      <div class="story-grid">
+        <article class="story-card story-card--photo reveal tilt-card">
+          <img src="scatch.png" alt="Illustrated portrait of SK MD Samim" loading="lazy" />
+          <div class="story-card__caption"><span>Based in</span><strong>Bolpur, West Bengal</strong></div>
+        </article>
+        <article class="story-card story-card--journey reveal tilt-card">
+          <span class="card-number">01</span><svg>
+            <use href="#icon-layers" />
+          </svg>
+          <h3>My journey</h3>
+          <p>Studying Computer Applications at The University of Burdwan while growing through real web projects,
+            digital marketing, and e-commerce learning.</p>
+        </article>
+        <article class="story-card story-card--different reveal tilt-card">
+          <span class="card-number">02</span><svg>
+            <use href="#icon-spark" />
+          </svg>
+          <h3>What makes me different</h3>
+          <p>I bring a practical mindset, calm communication, and an appetite for learning into every new challenge.</p>
+        </article>
+        <article class="story-card story-card--goal reveal tilt-card">
+          <span class="card-number">03</span>
+          <h3>Where I’m heading</h3>
+          <p>Contributing to a thoughtful team, becoming a stronger front-end developer, and building useful products
+            with a human perspective.</p>
+          <a href="#contact" class="inline-link">Start a conversation <svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="section skills-section">
+      <div class="section-intro section-intro--row reveal">
+        <div>
+          <p class="eyebrow"><span></span> My toolkit</p>
+          <h2>Tools I use to<br /><em>bring ideas alive.</em></h2>
+        </div>
+        <p>I’m building a versatile foundation across front-end craft, visual design, and AI-assisted workflows.</p>
+      </div>
+      <div class="skill-tabs reveal" role="tablist" aria-label="Skill categories">
+        <button class="skill-tab active" role="tab" aria-selected="true" data-skill-filter="all">All skills</button>
+        <button class="skill-tab" role="tab" aria-selected="false" data-skill-filter="frontend">Frontend</button>
+        <button class="skill-tab" role="tab" aria-selected="false" data-skill-filter="tools">Tools</button>
+        <button class="skill-tab" role="tab" aria-selected="false" data-skill-filter="ai">AI tools</button>
+      </div>
+      <div class="skills-grid" id="skills-grid">
+        <article class="skill-card reveal" data-skill="frontend"><span class="skill-icon skill-icon--html"><img
+              width="42" height="42" src="https://img.icons8.com/fluency/48/source-code.png" alt="source-code" /></span>
+          <div>
+            <h3>HTML</h3>
+            <p>Semantic foundations</p>
+          </div><span class="skill-level">Core</span>
+        </article>
+        <article class="skill-card reveal" data-skill="frontend"><span class="skill-icon skill-icon--css"><img
+              width="50" height="50"
+              src="https://img.icons8.com/external-bearicons-blue-bearicons/64/external-CSS-file-extension-bearicons-blue-bearicons.png"
+              alt="css" /></span>
+          <div>
+            <h3>CSS</h3>
+            <p>Responsive styling</p>
+          </div><span class="skill-level">Core</span>
+        </article>
+        <article class="skill-card reveal" data-skill="frontend"><span class="skill-icon skill-icon--js"><img width="42"
+              height="42" src="icons8-javascript.gif" alt="javascript" /></span>
+          <div>
+            <h3>JavaScript</h3>
+            <p>Interactive experiences</p>
+          </div><span class="skill-level">Growing</span>
+        </article>
+        <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--git"><img width="40"
+              height="40" src="icons8-github-logo.gif" alt="git" /></span>
+          <div>
+            <h3>Git &amp; GitHub</h3>
+            <p>Version control</p>
+          </div><span class="skill-level">Daily</span>
+        </article>
+        <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--figma"><img width="40"
+              height="40" src="https://img.icons8.com/fluency/48/figma.png" alt="figma" /></span>
+          <div>
+            <h3>Figma &amp; Canva</h3>
+            <p>Visual thinking</p>
+          </div><span class="skill-level">Growing</span>
+        </article>
+        <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--vscode"><img
+              width="48" height="48" src="https://img.icons8.com/fluency/48/visual-studio-code-2019.png"
+              alt="visual-studio-code-2019" /></span>
+          <div>
+            <h3>VS Code</h3>
+            <p>Focused development</p>
+          </div><span class="skill-level">Daily</span>
+        </article>
+        <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--ai"><img width="42"
+              height="42" src="https://img.icons8.com/fluency/48/chatgpt--v2.png" alt="chatgpt--v1" /></span>
+          <div>
+            <h3>ChatGPT</h3>
+            <p>Ideas &amp; iteration</p>
+          </div><span class="skill-level">Active</span>
+        </article>
+        <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--ai"><img width="42"
+              height="42" src="https://img.icons8.com/fluency/48/claude-ai.png" alt="claude-ai" /></span>
+          <div>
+            <h3>Gemini &amp; Claude</h3>
+            <p>AI exploration</p>
+          </div><span class="skill-level">Active</span>
+        </article>
+        <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--ai"><img width="42"
+              height="42" src="https://img.icons8.com/fluency/48/cursor-ai.png" alt="cursor-ai" /></span>
+          <div>
+            <h3>Cursor &amp; Perplexity</h3>
+            <p>Learning workflow</p>
+          </div><span class="skill-level">Active</span>
+        </article>
+        <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--git"><img width="35"
+              height="35" src="images000.jpg" alt="google-antigravity" /></span>
+          <div>
+            <h3>Codex &amp; Google Antigravity</h3>
+            <p>Coding & Automation</p>
+          </div><span class="skill-level">Daily</span>
+        </article>
+        <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--git"><img width="40"
+              height="40" src="https://img.icons8.com/fluency/48/microsoft-excel-2025.png"
+              alt="microsoft-excel" /></span>
+          <div>
+            <h3>Ms Excel &amp; Ms Word</h3>
+            <p>Productivity</p>
+          </div><span class="skill-level">Active</span>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="projects" class="section projects-section">
+      <div class="section-intro section-intro--row reveal">
+        <div>
+          <p class="eyebrow"><span></span> Selected work</p>
+          <h2>Small projects.<br /><em>Big intention.</em></h2>
+        </div>
+        <a class="text-link magnetic" href="https://github.com/SKSAMIMGOOD" target="_blank" rel="noopener">Explore
+          GitHub <svg>
+            <use href="#icon-external" />
+          </svg></a>
+      </div>
+      <div class="project-filter reveal" role="tablist" aria-label="Project filters">
+        <button class="filter-btn active" data-filter="all">All</button><button class="filter-btn"
+          data-filter="web">Web</button><button class="filter-btn" data-filter="ui">UI</button><button
+          class="filter-btn" data-filter="business">Business</button><button class="filter-btn"
+          data-filter="college">College</button><button class="filter-btn" data-filter="freelance">Freelance</button>
+      </div>
+      <div id="project-grid" class="project-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="services" class="section services-section">
+      <div class="services-panel glass reveal">
+        <div class="services-copy">
+          <p class="eyebrow"><span></span> How I can help</p>
+          <h2>Built to make a<br /><em>good first impression.</em></h2>
+          <p>Need a focused digital starting point? I create clean, responsive pages with a clear purpose — ideal for
+            personal brands and growing local businesses.</p><a class="btn btn--outline magnetic"
+            href="#contact">Discuss your idea <svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+        </div>
+        <div class="services-list">
+          <a href="#contact"><span>01</span><strong>Website design</strong><svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+          <a href="#contact"><span>02</span><strong>Responsive websites</strong><svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+          <a href="#contact"><span>03</span><strong>Landing pages</strong><svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+          <a href="#contact"><span>04</span><strong>Portfolio &amp; business sites</strong><svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+          <a href="#contact"><span>05</span><strong>WhatsApp ordering pages</strong><svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section journey-section">
+      <div class="section-intro section-intro--row reveal">
+        <div>
+          <p class="eyebrow"><span></span> Learning in motion</p>
+          <h2>The journey is<br /><em>the work.</em></h2>
+        </div>
+        <p>Each milestone has added perspective, confidence, and a clearer direction.</p>
+      </div>
+      <div class="roadmap">
+        <article class="roadmap-card reveal"><span>2020</span>
+          <div class="roadmap-dot"></div>
+          <h3>Strong foundations</h3>
+          <p>Completed Secondary education at BrahmanKhanda Basapara High School.</p>
+        </article>
+        <article class="roadmap-card reveal"><span>2022</span>
+          <div class="roadmap-dot"></div>
+          <h3>Momentum grows</h3>
+          <p>Completed Higher Secondary education at Bahiri Braja Sundary High School.</p>
+        </article>
+        <article class="roadmap-card roadmap-card--active reveal"><span>Now</span>
+          <div class="roadmap-dot"></div>
+          <h3>Building &amp; learning</h3>
+          <p>Studying Computer Applications and turning knowledge into web projects.</p>
+        </article>
+        <article class="roadmap-card roadmap-card--future reveal"><span>Next</span>
+          <div class="roadmap-dot"></div>
+          <h3>Real-world impact</h3>
+          <p>Seeking an internship to learn from a team and deliver useful work.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="certificates" class="section certificates-section">
+      <div class="section-intro section-intro--row reveal">
+        <div>
+          <p class="eyebrow"><span></span> Continuing to grow</p>
+          <h2>Certificates &amp;<br /><em>curiosity.</em></h2>
+        </div>
+        <p>A commitment to keep learning, beyond the classroom.</p>
+      </div>
+      <div class="certificate-track reveal">
+        <article class="certificate-card">
+          <div class="certificate-card__shine"></div><span class="certificate-icon">01</span><small>Certificate</small>
+          <h3>🎓 Digital Marketing</h3>
+          <p>SEO, social media, content, email marketing, and online advertising foundations.</p><span
+            class="certificate-line"></span>
+        </article>
+        <article class="certificate-card">
+          <div class="certificate-card__shine"></div><span class="certificate-icon">02</span><small>Certificate</small>
+          <h3>🎓 E - Commerce</h3>
+          <p>Online business operations, digital payments, marketplaces, and customer management.</p><span
+            class="certificate-line"></span>
+        </article>
+        <article class="certificate-card">
+          <div class="certificate-card__shine"></div><span class="certificate-icon">03</span><small>Certificate</small>
+          <h3>🎓 SWAYAM – Corporate Finance Certification</h3>
+          <p>Corporate finance fundamentals, financial statement analysis, capital budgeting, and investment
+            decision-making..</p><span class="certificate-line"></span>
+        </article>
+        <article class="certificate-card certificate-card--more"><svg>
+            <use href="#icon-spark" />
+          </svg>
+          <h3>What’s next?</h3>
+          <p>Always looking for the next skill that helps me build better.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonials" class="section testimonial-section">
+      <div class="testimonial-shell glass reveal">
+        <div class="quote-mark">“</div>
+        <div class="testimonial-slider" aria-live="polite">
+          <article class="testimonial active">
+            <p>“The strongest thing I can bring to a team is a willingness to listen, learn quickly, and turn feedback
+              into better work.”</p>
+            <div><span class="avatar avatar--samim">S</span><span><strong>SK MD SAMIM</strong><small>Personal working
+                  philosophy</small></span></div>
           </article>
-          <article class="story-card story-card--journey reveal tilt-card">
-            <span class="card-number">01</span><svg><use href="#icon-layers" /></svg>
-            <h3>My journey</h3><p>Studying Computer Applications at The University of Burdwan while growing through real web projects, digital marketing, and e-commerce learning.</p>
+          <article class="testimonial">
+            <p>“I believe useful digital experiences begin with a clear goal, a thoughtful process, and attention to the
+              people using them.”</p>
+            <div><span class="avatar avatar--idea">✦</span><span><strong>DESIGN PRINCIPLE</strong><small>Build with
+                  intention</small></span></div>
           </article>
-          <article class="story-card story-card--different reveal tilt-card">
-            <span class="card-number">02</span><svg><use href="#icon-spark" /></svg>
-            <h3>What makes me different</h3><p>I bring a practical mindset, calm communication, and an appetite for learning into every new challenge.</p>
-          </article>
-          <article class="story-card story-card--goal reveal tilt-card">
-            <span class="card-number">03</span>
-            <h3>Where I’m heading</h3><p>Contributing to a thoughtful team, becoming a stronger front-end developer, and building useful products with a human perspective.</p>
-            <a href="#contact" class="inline-link">Start a conversation <svg><use href="#icon-arrow" /></svg></a>
+          <article class="testimonial">
+            <p>“I’m looking for opportunities where curiosity and consistent effort can grow into real contribution.”
+            </p>
+            <div><span class="avatar avatar--future">↗</span><span><strong>CAREER GOAL</strong><small>Learn, contribute,
+                  improve</small></span></div>
           </article>
         </div>
-      </section>
+        <div class="slider-controls"><button class="slider-dot active" aria-label="Show quote 1"></button><button
+            class="slider-dot" aria-label="Show quote 2"></button><button class="slider-dot"
+            aria-label="Show quote 3"></button></div>
+      </div>
+    </section>
 
-      <section id="skills" class="section skills-section">
-        <div class="section-intro section-intro--row reveal">
-          <div><p class="eyebrow"><span></span> My toolkit</p><h2>Tools I use to<br /><em>bring ideas alive.</em></h2></div>
-          <p>I’m building a versatile foundation across front-end craft, visual design, and AI-assisted workflows.</p>
-        </div>
-        <div class="skill-tabs reveal" role="tablist" aria-label="Skill categories">
-          <button class="skill-tab active" role="tab" aria-selected="true" data-skill-filter="all">All skills</button>
-          <button class="skill-tab" role="tab" aria-selected="false" data-skill-filter="frontend">Frontend</button>
-          <button class="skill-tab" role="tab" aria-selected="false" data-skill-filter="tools">Tools</button>
-          <button class="skill-tab" role="tab" aria-selected="false" data-skill-filter="ai">AI tools</button>
-        </div>
-        <div class="skills-grid" id="skills-grid">
-          <article class="skill-card reveal" data-skill="frontend"><span class="skill-icon skill-icon--html"><img width="42" height="42" src="https://img.icons8.com/fluency/48/source-code.png" alt="source-code"/></span><div><h3>HTML</h3><p>Semantic foundations</p></div><span class="skill-level">Core</span></article>
-          <article class="skill-card reveal" data-skill="frontend"><span class="skill-icon skill-icon--css"><img width="50" height="50" src="https://img.icons8.com/external-bearicons-blue-bearicons/64/external-CSS-file-extension-bearicons-blue-bearicons.png" alt="css"/></span><div><h3>CSS</h3><p>Responsive styling</p></div><span class="skill-level">Core</span></article>
-          <article class="skill-card reveal" data-skill="frontend"><span class="skill-icon skill-icon--js"><img width="42" height="42" src="icons8-javascript.gif" alt="javascript"/></span><div><h3>JavaScript</h3><p>Interactive experiences</p></div><span class="skill-level">Growing</span></article>
-          <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--git"><img width="40" height="40" src="icons8-github-logo.gif" alt="git"/></span><div><h3>Git &amp; GitHub</h3><p>Version control</p></div><span class="skill-level">Daily</span></article>
-          <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--figma"><img width="40" height="40" src="https://img.icons8.com/fluency/48/figma.png" alt="figma"/></span><div><h3>Figma &amp; Canva</h3><p>Visual thinking</p></div><span class="skill-level">Growing</span></article>
-          <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--vscode"><img width="48" height="48" src="https://img.icons8.com/fluency/48/visual-studio-code-2019.png" alt="visual-studio-code-2019"/></span><div><h3>VS Code</h3><p>Focused development</p></div><span class="skill-level">Daily</span></article>
-          <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--ai"><img width="42" height="42" src="https://img.icons8.com/fluency/48/chatgpt--v2.png" alt="chatgpt--v1"/></span><div><h3>ChatGPT</h3><p>Ideas &amp; iteration</p></div><span class="skill-level">Active</span></article>
-          <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--ai"><img width="42" height="42" src="https://img.icons8.com/fluency/48/claude-ai.png" alt="claude-ai"/></span><div><h3>Gemini &amp; Claude</h3><p>AI exploration</p></div><span class="skill-level">Active</span></article>
-          <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--ai"><img width="42" height="42" src="https://img.icons8.com/fluency/48/cursor-ai.png" alt="cursor-ai"/></span><div><h3>Cursor &amp; Perplexity</h3><p>Learning workflow</p></div><span class="skill-level">Active</span></article>
-          <article class="skill-card reveal" data-skill="ai"><span class="skill-icon skill-icon--git"><img width="35" height="35" src="images000.jpg" alt="google-antigravity"/></span><div><h3>Codex &amp; Google Antigravity</h3><p>Coding & Automation</p></div><span class="skill-level">Daily</span></article>
-          <article class="skill-card reveal" data-skill="tools"><span class="skill-icon skill-icon--git"><img width="40" height="40" src="https://img.icons8.com/fluency/48/microsoft-excel-2025.png" alt="microsoft-excel"/></span><div><h3>Ms Excel &amp; Ms Word</h3><p>Productivity</p></div><span class="skill-level">Active</span></article>
-          
-         </div>
-      </section>
-
-      <section id="projects" class="section projects-section">
-        <div class="section-intro section-intro--row reveal">
-          <div><p class="eyebrow"><span></span> Selected work</p><h2>Small projects.<br /><em>Big intention.</em></h2></div>
-          <a class="text-link magnetic" href="https://github.com/SKSAMIMGOOD" target="_blank" rel="noopener">Explore GitHub <svg><use href="#icon-external" /></svg></a>
-        </div>
-        <div class="project-filter reveal" role="tablist" aria-label="Project filters">
-          <button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="web">Web</button><button class="filter-btn" data-filter="ui">UI</button><button class="filter-btn" data-filter="business">Business</button><button class="filter-btn" data-filter="college">College</button><button class="filter-btn" data-filter="freelance">Freelance</button>
-        </div>
-        <div id="project-grid" class="project-grid" aria-live="polite"></div>
-      </section>
-
-      <section id="services" class="section services-section">
-        <div class="services-panel glass reveal">
-          <div class="services-copy"><p class="eyebrow"><span></span> How I can help</p><h2>Built to make a<br /><em>good first impression.</em></h2><p>Need a focused digital starting point? I create clean, responsive pages with a clear purpose — ideal for personal brands and growing local businesses.</p><a class="btn btn--outline magnetic" href="#contact">Discuss your idea <svg><use href="#icon-arrow" /></svg></a></div>
-          <div class="services-list">
-            <a href="#contact"><span>01</span><strong>Website design</strong><svg><use href="#icon-arrow" /></svg></a>
-            <a href="#contact"><span>02</span><strong>Responsive websites</strong><svg><use href="#icon-arrow" /></svg></a>
-            <a href="#contact"><span>03</span><strong>Landing pages</strong><svg><use href="#icon-arrow" /></svg></a>
-            <a href="#contact"><span>04</span><strong>Portfolio &amp; business sites</strong><svg><use href="#icon-arrow" /></svg></a>
-            <a href="#contact"><span>05</span><strong>WhatsApp ordering pages</strong><svg><use href="#icon-arrow" /></svg></a>
+    <section id="contact" class="section contact-section">
+      <div class="contact-heading reveal">
+        <p class="eyebrow"><span></span> Get in touch</p>
+        <h2>Let’s make something<br /><em>worth remembering.</em></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-details reveal">
+          <p>Whether you have an internship opportunity, a website in mind, or simply want to connect — my inbox is
+            always open.</p>
+          <a class="contact-email magnetic" href="mailto:sksamimgoodboy@gmail.com">sksamimgoodboy@gmail.com <svg>
+              <use href="#icon-arrow" />
+            </svg></a>
+          <div class="contact-links" aria-label="Social links">
+            <a href="https://github.com/SKSAMIMGOOD" target="_blank" class="contact-link" rel="noopener"><img width="38"
+                height="38" src="https://img.icons8.com/?size=100&id=2CZ4L7bKk5lE&format=png&color=000000"
+                alt="github" /></a>
+            <a href="https://www.linkedin.com/in/skmdsamimgoodboy/" target="_blank" class="contact-link"
+              rel="noopener"><img width="38"
+                height="38" src="https://img.icons8.com/?size=100&id=MR3dZdlA53te&format=png&color=000000"
+                alt="linkedin" /></a>
+            <a href="https://x.com/samimisgreat" target="_blank" class="contact-link" rel="noopener"><img width="38"
+                height="38" src="https://img.icons8.com/?size=100&id=bG29Ckcdp6YP&format=png&color=000000"
+                alt="x" /></a>
+            <a href="https://www.instagram.com/_im__samim_/" target="_blank" class="contact-link"
+              rel="noopener"><img width="38"
+                height="38" src="https://img.icons8.com/?size=100&id=BrU2BBoRXiWq&format=png&color=000000"
+                alt="instagram" /></a>
+            <a href="https://www.facebook.com/skjahidul7029" target="_blank" class="contact-link"
+              rel="noopener"><img width="38"
+                height="38" src="https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000"
+                alt="facebook" /></a>
           </div>
-        </div>
-      </section>
-
-      <section id="experience" class="section journey-section">
-        <div class="section-intro section-intro--row reveal"><div><p class="eyebrow"><span></span> Learning in motion</p><h2>The journey is<br /><em>the work.</em></h2></div><p>Each milestone has added perspective, confidence, and a clearer direction.</p></div>
-        <div class="roadmap">
-          <article class="roadmap-card reveal"><span>2020</span><div class="roadmap-dot"></div><h3>Strong foundations</h3><p>Completed Secondary education at BrahmanKhanda Basapara High School.</p></article>
-          <article class="roadmap-card reveal"><span>2022</span><div class="roadmap-dot"></div><h3>Momentum grows</h3><p>Completed Higher Secondary education at Bahiri Braja Sundary High School.</p></article>
-          <article class="roadmap-card roadmap-card--active reveal"><span>Now</span><div class="roadmap-dot"></div><h3>Building &amp; learning</h3><p>Studying Computer Applications and turning knowledge into web projects.</p></article>
-          <article class="roadmap-card roadmap-card--future reveal"><span>Next</span><div class="roadmap-dot"></div><h3>Real-world impact</h3><p>Seeking an internship to learn from a team and deliver useful work.</p></article>
-        </div>
-      </section>
-
-      <section id="certificates" class="section certificates-section">
-        <div class="section-intro section-intro--row reveal"><div><p class="eyebrow"><span></span> Continuing to grow</p><h2>Certificates &amp;<br /><em>curiosity.</em></h2></div><p>A commitment to keep learning, beyond the classroom.</p></div>
-        <div class="certificate-track reveal">
-          <article class="certificate-card"><div class="certificate-card__shine"></div><span class="certificate-icon">01</span><small>Certificate</small><h3>🎓 Digital Marketing</h3><p>SEO, social media, content, email marketing, and online advertising foundations.</p><span class="certificate-line"></span></article>
-          <article class="certificate-card"><div class="certificate-card__shine"></div><span class="certificate-icon">02</span><small>Certificate</small><h3>🎓 E - Commerce</h3><p>Online business operations, digital payments, marketplaces, and customer management.</p><span class="certificate-line"></span></article>
-          <article class="certificate-card"><div class="certificate-card__shine"></div><span class="certificate-icon">03</span><small>Certificate</small><h3>🎓 SWAYAM – Corporate Finance Certification</h3><p>Corporate finance fundamentals, financial statement analysis, capital budgeting, and investment decision-making..</p><span class="certificate-line"></span></article>
-          <article class="certificate-card certificate-card--more"><svg><use href="#icon-spark" /></svg><h3>What’s next?</h3><p>Always looking for the next skill that helps me build better.</p></article>
-        </div>
-      </section>
-
-      <section id="testimonials" class="section testimonial-section">
-        <div class="testimonial-shell glass reveal">
-          <div class="quote-mark">“</div>
-          <div class="testimonial-slider" aria-live="polite">
-            <article class="testimonial active"><p>“The strongest thing I can bring to a team is a willingness to listen, learn quickly, and turn feedback into better work.”</p><div><span class="avatar avatar--samim">S</span><span><strong>SK MD SAMIM</strong><small>Personal working philosophy</small></span></div></article>
-            <article class="testimonial"><p>“I believe useful digital experiences begin with a clear goal, a thoughtful process, and attention to the people using them.”</p><div><span class="avatar avatar--idea">✦</span><span><strong>DESIGN PRINCIPLE</strong><small>Build with intention</small></span></div></article>
-            <article class="testimonial"><p>“I’m looking for opportunities where curiosity and consistent effort can grow into real contribution.”</p><div><span class="avatar avatar--future">↗</span><span><strong>CAREER GOAL</strong><small>Learn, contribute, improve</small></span></div></article>
-          </div>
-          <div class="slider-controls"><button class="slider-dot active" aria-label="Show quote 1"></button><button class="slider-dot" aria-label="Show quote 2"></button><button class="slider-dot" aria-label="Show quote 3"></button></div>
-        </div>
-      </section>
-
-      <section id="contact" class="section contact-section">
-        <div class="contact-heading reveal"><p class="eyebrow"><span></span> Get in touch</p><h2>Let’s make something<br /><em>worth remembering.</em></h2></div>
-        <div class="contact-grid">
-          <div class="contact-details reveal">
-            <p>Whether you have an internship opportunity, a website in mind, or simply want to connect — my inbox is always open.</p>
-            <a class="contact-email magnetic" href="mailto:sksamimgoodboy@gmail.com">sksamimgoodboy@gmail.com <svg><use href="#icon-arrow" /></svg></a>
-            <div class="contact-info"><a href="https://github.com/SKSAMIMGOOD" target="_blank" rel="noopener"><svg><use href="#icon-github" /></svg> GitHub</a><a href="https://www.linkedin.com/in/skmdsamimgoodboy/" target="_blank" rel="noopener"><svg><use href="#icon-linkedin" /></svg> LinkedIn</a><span><svg><use href="#icon-pin" /></svg> Bolpur, West Bengal</span></div>
-          </div>
+          <!-- <div class="contact-info"><a href="https://github.com/SKSAMIMGOOD" target="_blank" rel="noopener"><svg>
+                <use href="#icon-github" />
+              </svg> GitHub</a><a href="https://www.linkedin.com/in/skmdsamimgoodboy/" target="_blank"
+              rel="noopener"><svg>
+                <use href="#icon-linkedin" />
+              </svg> LinkedIn</a><span><svg>
+                <use href="#icon-pin" />
+              </svg> Bolpur, West Bengal</span></div>
+        </div> --><br>
           <form class="contact-form glass reveal" id="contact-form">
-            <div class="form-row"><label>Name<input type="text" name="name" autocomplete="name" placeholder="Your name" required /></label><label>Email<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required /></label></div>
+            <div class="form-row"><label>Name<input type="text" name="name" autocomplete="name" placeholder="Your name"
+                  required /></label><label>Email<input type="email" name="email" autocomplete="email"
+                  placeholder="you@example.com" required /></label></div>
             <label>Subject<input type="text" name="subject" placeholder="How can I help?" required /></label>
-            <label>Message<textarea name="message" rows="4" placeholder="Tell me a little about your idea..." required></textarea></label>
-            <button class="btn btn--primary magnetic" type="submit"><span>Send message</span><svg><use href="#icon-send" /></svg></button>
+            <label>Message<textarea name="message" rows="4" placeholder="Tell me a little about your idea..."
+                required></textarea></label>
+            <button class="btn btn--primary magnetic" type="submit"><span>Send message</span><svg>
+                <use href="#icon-send" />
+              </svg></button>
             <p class="form-status" id="form-status" role="status"></p>
           </form>
         </div>
-      </section>
-    </main>
+    </section>
+  </main>
 
-    <footer class="site-footer">
-      <a class="brand magnetic" href="#home"><span class="brand-mark"><img width="38" height="38" src="picofme (10).png" alt="logo"/></span><span class="brand-name">𝒮𝒦 𝑀𝒟 𝒮𝒜𝑀𝐼𝑀</span></a>
-      <p>Made with curiosity, code &amp; care.</p>
-      <div class="footer-links"><a href="#projects">Work</a><a href="#about">About</a><a href="#contact">Contact</a><a href="SK_MD_SAMIM_Resume.pdf" download>Résumé</a></div>
-      <p class="footer-copy">© <span id="year"></span> SK MD SAMIM</p>
-      <a href="#top" class="back-top magnetic" aria-label="Back to top">↑</a>
-    </footer>
+  <footer class="site-footer">
+    <a class="brand magnetic" href="#home"><span class="brand-mark"><img width="38" height="38" src="picofme (10).png"
+          alt="logo" /></span><span class="brand-name">𝒮𝒦 𝑀𝒟 𝒮𝒜𝑀𝐼𝑀</span></a>
+    <p>Made with curiosity, code &amp; care.</p>
+    <div class="footer-links"><a href="#projects">Work</a><a href="#about">About</a><a href="#contact">Contact</a><a
+        href="SK_MD_SAMIM_Resume.pdf" download>Résumé</a></div>
+    <p class="footer-copy">© <span id="year"></span> SK MD SAMIM</p>
+    <a href="#top" class="back-top magnetic" aria-label="Back to top">↑</a>
+  </footer>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
+
 </html>
